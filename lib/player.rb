@@ -8,6 +8,18 @@ module GAGame
     # Mixin the Talker module
     include Talker
 
+    @@all_players = []
+
+    def self.all_players
+      @@all_players.count
+    end
+
+    def self.find_by_first_name(fname)
+      @@all_players.select do |player|
+        player.first_name == fname
+      end
+    end
+
     # Create class constants
      DEFAULT_HEALTH = 20
      DEFAULT_STRENGTH = 5
@@ -19,6 +31,7 @@ module GAGame
       @health = DEFAULT_HEALTH
       @strength = DEFAULT_STRENGTH
       talk("Created #{full_name}")
+      @@all_players << self
     end
 
     def alive?
