@@ -17,8 +17,15 @@ class Player < Person
     health > 0
   end
 
+  # Decreases players health when attacked
   def take_damage(attack_strength)
     @health -= attack_strength
   end
+
+  # Attach another player
+  def attack(opponent)
+    opponent.take_damage(self.strength)
+  end
+
 
 end
